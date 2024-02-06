@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decision Tree</title>
+<style>
+  .container {
+    text-align: center;
+  }
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+  }
+  .button:hover {
+    background-color: #ddd;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Decision Tree for Product Selection</h2>
+  <p>How many kg do you want to lose?</p>
+  <button class="button" onclick="showOptions('3-5')">3-5 kg</button>
+  <button class="button" onclick="showOptions('5-8')">5-8 kg</button>
+</div>
+
+<script>
+  function showOptions(kgRange) {
+    var options = '';
+    if (kgRange === '3-5') {
+      options = "Constipation?";
+      options += "<button class='button' onclick='showProducts(\"Yes3-5\")'>Yes</button>";
+      options += "<button class='button' onclick='showProducts(\"No3-5\")'>No</button>";
+    } else if (kgRange === '5-8') {
+      options = "Constipation?";
+      options += "<button class='button' onclick='showProducts(\"Yes5-8\")'>Yes</button>";
+      options += "<button class='button' onclick='showProducts(\"No5-8\")'>No</button>";
+    }
+    document.querySelector('.container').innerHTML = options;
+    document.querySelector('.container').innerHTML += "<button class='button' onclick='goBack()'>Back</button>";
+  }
+
+  function showProducts(constipation) {
+    var products = '';
+    if (constipation === 'Yes3-5') {
+      products = "<p>Recommended Product(s): Lemon Herbal Tea</p>";
+      products += "<p>Recommended Product(s) for body blocks: PLUS SERUM</p>";
+    } else if (constipation === 'No3-5') {
+      products = "<p>Recommended Product(s): Bonjourlife Coffee or Apple Herbal Mixed Tea</p>";
+      products += "<p>Recommended Product(s) for body blocks: PLUS SERUM</p>";
+    } else if (constipation === 'Yes5-8') {
+      products = "<p>Recommended Product(s): Lemon Herbal Tea with Bonjourlife Coffee or Apple Herbal Mixed Tea</p>";
+      products += "<p>Recommended Product(s) for body blocks: PLUS SERUM</p>";
+    } else if (constipation === 'No5-8') {
+      products = "<p>Recommended Product(s): Bonjourlife Coffee with Apple Herbal Mixed Tea</p>";
+      products += "<p>Recommended Product(s) for body blocks: PLUS SERUM</p>";
+    }
+    products += "<button class='button' onclick='goBack()'>Back</button>";
+    document.querySelector('.container').innerHTML = products;
+  }
+
+  function goBack() {
+    location.reload();
+  }
+</script>
+
+</body>
+</html>
